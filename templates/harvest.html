@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Harvest Log - Hunt Club Manager{% endblock %}
+
+{% block content %}
+<h1 style="color: white; margin-bottom: 2rem;">Harvest Log</h1>
+
+<div class="card">
+    <h2>Log New Harvest</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="game_type">Game Type *</label>
+            <input type="text" class="form-control" id="game_type" name="game_type" 
+                   placeholder="e.g., White-tail Buck, Doe, Turkey" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" 
+                   placeholder="e.g., North Ridge, Oak Grove">
+        </div>
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" id="notes" name="notes" 
+                      placeholder="Weight, points, field conditions, etc."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Log Harvest</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Harvest History</h2>
+    {% if harvests %}
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Hunter</th>
+                <th>Game Type</th>
+                <th>Location</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for harvest in harvests %}
+            <tr>
+                <td>{{ harvest.date.strftime('%Y-%m-%d %I:%M %p') }}</td>
+                <td>{{ harvest.hunter.username }}</td>
+                <td>{{ harvest.game_type }}</td>
+                <td>{{ harvest.location or '-' }}</td>
+                <td>{{ harvest.notes or '-' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="text-align: center; color: #666; padding: 2rem;">No harvests logged yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

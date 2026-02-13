@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Stands - Hunt Club Manager{% endblock %}
+
+{% block content %}
+<h1 style="color: white; margin-bottom: 2rem;">Manage Hunting Stands</h1>
+
+<div class="card">
+    <h2>Add New Stand</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Stand Name *</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="max_hunters">Maximum Hunters</label>
+            <input type="number" class="form-control" id="max_hunters" name="max_hunters" 
+                   value="1" min="1" max="10" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Stand</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Existing Stands</h2>
+    {% if stands %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Active Hunters</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stand in stands %}
+            <tr>
+                <td>{{ stand.name }}</td>
+                <td>{{ stand.description or '-' }}</td>
+                <td>{{ stand.max_hunters }}</td>
+                <td>{{ stand.get_active_checkins()|length }}</td>
+                <td>
+                    {% if stand.is_available() %}
+                    <span class="badge badge-success">Available</span>
+                    {% else %}
+                    <span class="badge badge-danger">Full</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="text-align: center; color: #666; padding: 2rem;">No stands configured.</p>
+    {% endif %}
+</div>
+{% endblock %}

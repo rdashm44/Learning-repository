@@ -34,11 +34,15 @@ python app.py
 
 ## Default Credentials
 
-The application creates a default admin account:
+The application creates a default admin account on first run:
 - Username: `admin`
 - Password: `admin123`
 
-**Important**: Change the admin password after first login in a production environment.
+**⚠️ SECURITY WARNING**: This default password is for development only. In production:
+1. Change the admin password immediately after first login
+2. Set a strong SECRET_KEY environment variable
+3. Use HTTPS for all connections
+4. Consider implementing mandatory password change on first login
 
 ## Usage
 

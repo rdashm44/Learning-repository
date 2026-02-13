@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'dev-secret-key-change-in-production'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///huntclub.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -48,14 +48,14 @@ class StandCheckIn(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     stand_id = db.Column(db.Integer, db.ForeignKey('hunting_stand.id'), nullable=False)
-    checkin_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    checkin_time = db.Column(db.DateTime, nullable=False, default=lambda: datetime.utcnow())
     checkout_time = db.Column(db.DateTime)
 
 class Harvest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     game_type = db.Column(db.String(100), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default=lambda: datetime.utcnow())
     location = db.Column(db.String(200))
     notes = db.Column(db.Text)
 
@@ -250,8 +250,15 @@ def init_db():
         # Create admin user if doesn't exist
         if not User.query.filter_by(username='admin').first():
             admin = User(username='admin', is_admin=True)
+            # SECURITY WARNING: Change this password immediately in production
             admin.set_password('admin123')
             db.session.add(admin)
+            print("=" * 60)
+            print("SECURITY WARNING: Default admin account created!")
+            print("Username: admin")
+            print("Password: admin123")
+            print("CHANGE THIS PASSWORD IMMEDIATELY!")
+            print("=" * 60)
         
         # Create sample stands if none exist
         if HuntingStand.query.count() == 0:

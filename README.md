@@ -2,14 +2,73 @@
 
 A web application for managing a private hunt club with member authentication, stand check-in/out, and harvest logging.
 
+## Getting the Code
+
+### Option 1: Clone from GitHub
+```bash
+git clone https://github.com/rdashm44/Learning-repository.git
+cd Learning-repository
+```
+
+### Option 2: Download ZIP
+1. Download the repository as a ZIP file from GitHub
+2. Extract it to a folder on your computer
+3. Open a terminal and navigate to the extracted folder
+
+## Working Directory
+
+**The directory you should reference is the root folder of this repository.**
+
+This is where you'll find:
+- `app.py` - The main Flask application
+- `requirements.txt` - Python dependencies
+- `templates/` - HTML templates folder
+- `README.md` - This file
+
+### For Terminal/Command Line:
+```bash
+# Navigate to the repository folder
+cd Learning-repository
+
+# Or if you extracted/cloned to a specific location:
+cd /path/to/Learning-repository
+
+# Verify you're in the right place - you should see app.py
+ls
+# You should see: app.py  README.md  requirements.txt  templates
+```
+
+### For Claude Code / VS Code / IDEs:
+- **Open Folder:** Select the `Learning-repository` folder (the root directory)
+- **Working Directory:** This is where `app.py` is located
+- All commands in this README should be run from this directory
+
+### Directory Structure:
+```
+Learning-repository/          ← YOU ARE HERE (root directory)
+├── app.py                     ← Main Flask application
+├── requirements.txt           ← Python dependencies
+├── README.md                  ← This documentation
+├── .gitignore                 ← Git ignore rules
+└── templates/                 ← HTML templates folder
+    ├── base.html
+    ├── login.html
+    ├── dashboard.html
+    └── ... (other templates)
+```
+
 ## Quick Start - Opening the Application in Your Browser
 
-**Prerequisites:** Python 3.8 or higher installed on your system
+**Prerequisites:** 
+- Python 3.8 or higher installed on your system
+- You're in the repository's root directory (where `app.py` is located)
 
 1. **Install dependencies** (first time only):
    ```bash
    pip install -r requirements.txt
    ```
+   
+   > **Note:** If you get "File not found" error, make sure you're in the correct directory. Run `ls` (Mac/Linux) or `dir` (Windows) to check if you see `app.py` and `requirements.txt`
 
 2. **Start the application:**
    ```bash

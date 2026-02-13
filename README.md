@@ -65,3 +65,18 @@ The application creates a default admin account on first run:
 - **Database**: SQLite with Flask-SQLAlchemy
 - **Authentication**: Flask-Login with Werkzeug password hashing
 - **Frontend**: HTML templates with embedded CSS
+
+## Running the Application
+
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+Visit http://localhost:5000 in your browser.
+
+### Environment Variables
+
+For production deployment, set these environment variables:
+- `SECRET_KEY`: A strong random secret key for session security
+- `FLASK_DEBUG`: Set to `true` only for development (default: `false`)

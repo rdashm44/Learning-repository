@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
@@ -9,6 +10,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///huntclub.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Enable CORS for iOS app
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
@@ -25,7 +29,7 @@ class User(UserMixin, db.Model):
     harvests = db.relationship('Harvest', backref='hunter', lazy=True)
     
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password, method='pbkdf2:sha256')
     
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
@@ -58,6 +62,10 @@ class Harvest(db.Model):
     date = db.Column(db.DateTime, nullable=False, default=lambda: datetime.utcnow())
     location = db.Column(db.String(200))
     notes = db.Column(db.Text)
+
+# Register API blueprints for iOS app
+from api import register_api_blueprints
+register_api_blueprints(app)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -278,4 +286,4 @@ if __name__ == '__main__':
     init_db()
     # Set debug=False in production for security
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
-    app.run(debug=debug_mode, host='0.0.0.0', port=5000)
+    app.run(debug=debug_mode, host='0.0.0.0', port=5001)

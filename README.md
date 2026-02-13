@@ -2,6 +2,70 @@
 
 A web application for managing a private hunt club with member authentication, stand check-in/out, and harvest logging.
 
+## Quick Start - Opening the Application in Your Browser
+
+**Prerequisites:** Python 3.8 or higher installed on your system
+
+1. **Install dependencies** (first time only):
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Start the application:**
+   ```bash
+   python app.py
+   ```
+   
+   You should see output like:
+   ```
+   ============================================================
+   SECURITY WARNING: Default admin account created!
+   Username: admin
+   Password: admin123
+   CHANGE THIS PASSWORD IMMEDIATELY!
+   ============================================================
+   Database initialized!
+    * Serving Flask app 'app'
+    * Debug mode: off
+   WARNING: This is a development server. Do not use it in a production deployment.
+    * Running on http://0.0.0.0:5000
+   Press CTRL+C to quit
+   ```
+
+3. **Open your web browser** and navigate to:
+   ```
+   http://localhost:5000
+   ```
+   
+   Alternative URLs that also work:
+   - `http://127.0.0.1:5000`
+   - `http://0.0.0.0:5000`
+
+4. **Login** with the default credentials:
+   - Username: `admin`
+   - Password: `admin123`
+
+You're now ready to use the Hunt Club Manager! 🦌
+
+### Troubleshooting
+
+**Problem:** "Address already in use" or "Port 5000 is in use"  
+**Solution:** Another application is using port 5000. Either:
+- Stop the other application
+- Or modify `app.py` to use a different port (e.g., change `port=5000` to `port=5001`)
+
+**Problem:** Can't connect to the server  
+**Solution:** 
+- Make sure the `python app.py` command is still running
+- Check for any error messages in the terminal
+- Try accessing `http://127.0.0.1:5000` instead
+
+**Problem:** Page not found or blank page  
+**Solution:**
+- Clear your browser cache
+- Try a different browser
+- Check the terminal for any error messages
+
 ## Features
 
 - **User Authentication**: Register and login functionality with secure password hashing
@@ -16,21 +80,15 @@ A web application for managing a private hunt club with member authentication, s
   - Add and manage hunting stands
   - View all users and their status
 
-## Installation
+## Installation & Setup
 
+See the **Quick Start** section above for step-by-step instructions.
+
+For development:
 1. Install Python 3.8 or higher
-
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-3. Run the application:
-```bash
-python app.py
-```
-
-4. Open your browser and navigate to `http://localhost:5000`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the application: `python app.py`
+4. Open browser to: `http://localhost:5000`
 
 ## Default Credentials
 
@@ -66,16 +124,7 @@ The application creates a default admin account on first run:
 - **Authentication**: Flask-Login with Werkzeug password hashing
 - **Frontend**: HTML templates with embedded CSS
 
-## Running the Application
-
-```bash
-pip install -r requirements.txt
-python app.py
-```
-
-Visit http://localhost:5000 in your browser.
-
-### Environment Variables
+## Environment Variables
 
 For production deployment, set these environment variables:
 - `SECRET_KEY`: A strong random secret key for session security

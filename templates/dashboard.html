@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Hunt Club Manager{% endblock %}
+
+{% block content %}
+<h1 style="color: white; margin-bottom: 2rem;">Active Hunters Dashboard</h1>
+
+{% if user_checkin %}
+<div class="card" style="background-color: #d4edda; border: 2px solid #8bc34a;">
+    <h2>Your Active Hunt</h2>
+    <p><strong>Stand:</strong> {{ user_checkin.stand.name }}</p>
+    <p><strong>Checked in:</strong> {{ user_checkin.checkin_time.strftime('%Y-%m-%d %I:%M %p') }}</p>
+    <form method="POST" action="{{ url_for('checkout') }}">
+        <button type="submit" class="btn btn-danger">Check Out</button>
+    </form>
+</div>
+{% endif %}
+
+<div class="card">
+    <h2>Currently Hunting</h2>
+    {% if active_checkins %}
+    <table>
+        <thead>
+            <tr>
+                <th>Hunter</th>
+                <th>Stand</th>
+                <th>Checked In</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for checkin in active_checkins %}
+            <tr>
+                <td>{{ checkin.hunter.username }}</td>
+                <td>{{ checkin.stand.name }}</td>
+                <td>{{ checkin.checkin_time.strftime('%Y-%m-%d %I:%M %p') }}</td>
+                <td><span class="badge badge-success">Active</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="text-align: center; color: #666; padding: 2rem;">No hunters are currently active.</p>
+    {% endif %}
+</div>
+
+<div style="text-align: center; margin-top: 2rem;">
+    {% if not user_checkin %}
+    <a href="{{ url_for('stands') }}" class="btn btn-primary">Check In to a Stand</a>
+    {% endif %}
+    <a href="{{ url_for('harvest') }}" class="btn btn-secondary">View Harvest Log</a>
+</div>
+{% endblock %}

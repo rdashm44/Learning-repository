@@ -106,6 +106,123 @@ Learning-repository/          ← YOU ARE HERE (root directory)
 
 You're now ready to use the Hunt Club Manager! 🦌
 
+## 🎯 How to Use the Features - Complete Walkthrough
+
+Once you have localhost open (see Quick Start above), here's how to explore all the features:
+
+### 1. **Login to the System**
+
+![Login Page](https://github.com/user-attachments/assets/556d716c-f4f0-4a55-b178-7194ce7df8d0)
+
+- Enter username: `admin`
+- Enter password: `admin123`
+- Click "Login"
+- You'll see a success message and be redirected to the dashboard
+
+### 2. **View the Dashboard (Home Page)**
+
+![Dashboard](https://github.com/user-attachments/assets/1159d9ec-22a3-4714-a5c2-84950bcba7bf)
+
+The dashboard is your home base and shows:
+- **Currently Hunting** section: Real-time list of all active hunters
+- **Your Active Hunt** box: If you're checked in, shows which stand you're at
+- Quick action buttons to check in or view harvest log
+
+**What you can do:**
+- See who else is hunting and where they are
+- Click "Check In to a Stand" to start hunting
+- Click "View Harvest Log" to log or view harvests
+
+### 3. **Check In to a Hunting Stand**
+
+![Hunting Stands](https://github.com/user-attachments/assets/c8fbd038-85bb-4c1b-b08f-317a2deba854)
+
+Click "Stands" in the navigation menu to see all available stands:
+- **4 pre-configured stands**: North Ridge, Creek Bottom, Oak Grove, South Field
+- Each stand shows:
+  - Description of location
+  - Capacity (current/maximum hunters)
+  - Availability status (Available/Full)
+- **Green "Check In" button**: Click to check in to that stand
+
+**Rules:**
+- You can only check in to one stand at a time
+- Stands have maximum capacity (some allow multiple hunters)
+- You must check out before checking in to another stand
+
+### 4. **Track Your Active Hunt**
+
+![Active Hunter Dashboard](https://github.com/user-attachments/assets/387c8f3b-c51e-4882-8036-25e28cdc51b8)
+
+After checking in, the dashboard updates to show:
+- **Your Active Hunt** (highlighted in green):
+  - Which stand you're at
+  - When you checked in
+  - Red "Check Out" button when you're done
+- **Currently Hunting table**: 
+  - Shows all active hunters (including you)
+  - Stand locations
+  - Check-in times
+  - Status badges
+
+**What you can do:**
+- Click "Check Out" when you're done hunting
+- See real-time updates of who else is hunting
+
+### 5. **Log Your Harvests**
+
+![Harvest Log](https://github.com/user-attachments/assets/0bdc6cbe-a702-4da8-9d3a-93ae6b901c41)
+
+Click "Harvest Log" in the navigation menu:
+- **Log New Harvest** form at the top:
+  - **Game Type** (required): e.g., "White-tail Buck", "Doe", "Turkey"
+  - **Location**: e.g., "North Ridge", "Oak Grove"
+  - **Notes**: Add details like weight, points, field conditions
+  - Click "Log Harvest" to save
+- **Harvest History** table below:
+  - Shows all logged harvests from all members
+  - Includes date, hunter, game type, location, and notes
+  - Most recent harvests appear first
+
+### 6. **Admin: Manage Stands** (Admin Only)
+
+![Manage Stands](https://github.com/user-attachments/assets/e17db5fa-0aed-4d9b-9b6a-1ae37b0b8001)
+
+If you're logged in as admin, click "Manage Stands":
+- **Add New Stand** form:
+  - Stand Name (required)
+  - Description
+  - Maximum Hunters (default: 1)
+  - Click "Add Stand" to create
+- **Existing Stands** table:
+  - Lists all stands with their details
+  - Shows current capacity and active hunter count
+  - Status indicators (Available/Full)
+
+### 7. **Admin: View Users** (Admin Only)
+
+Click "Users" in the navigation menu:
+- See all registered users
+- View each user's role (Admin/Member)
+- Check if users are currently hunting (Active/Inactive status)
+
+### 8. **Logout**
+
+When you're done:
+- Click "Logout (admin)" in the top navigation
+- You'll be redirected back to the login page
+
+---
+
+## 💡 Quick Tips
+
+- **Navigation Bar**: Always visible at the top with links to all features
+- **Success Messages**: Green notifications appear when actions complete
+- **Stand Capacity**: Pay attention to capacity - you can't check in if a stand is full
+- **Real-Time Updates**: Refresh the dashboard to see latest active hunters
+- **Harvest Log**: Open to all members - everyone can see all harvests
+- **Admin Features**: Only visible if logged in as admin
+
 ### Troubleshooting
 
 **Problem:** "Address already in use" or "Port 5000 is in use"  
